@@ -1,4 +1,5 @@
 import csv
+import pprint
 
 def get_user_model():
     user_model = input('Por favor ingresa el modelo que te interesa: ')
@@ -26,12 +27,58 @@ def save_data(filtered_data, csv_new_file):
 
 
 def get_kpis(user_model, filtered_data):
-    # Conteo
-    conteo = 0
-    for x in filtered_data:
-        conteo += 1
+
+    kpis = {
+        "conteo"      : 0 ,
+        "mínimo"      : 999999 ,
+        "máximo"      : 0 ,
+        "suma_precio" : 0
+    }
+
+    for row in filtered_data:
+        # DRY / Dont Repeat yourself
+        precio = float(row[2])
+        
+        kpis["conteo"] += 1
+        kpis["suma_precio"] += precio
     
+        if precio<kpis["mínimo"]:
+            kpis["mínimo"] = precio
+
+        if precio>kpis["máximo"]:
+            kpis["máximo"] = precio
+
+    kpis["promedio"] = kpis["suma_precio"] / kpis["conteo"]
+
     print(f'''
     Indicadores del modelo : {user_model}
-    En total tenemos {conteo} autos
     ''')
+    # Opcion 1
+    pprint.pp(kpis)
+
+    # Opcion 2
+    for llave, valor in kpis.items():
+        print(f'{llave} : ')
+
+
+def get_kpis_v2(user_model, filtered_data):
+    
+
+    kpis = {
+        "conteo"      : 0 ,
+        "mínimo"      : 999999 ,
+        "máximo"      : 0 ,
+        "suma_precio" : 0
+    }
+
+    # Extraer los precios de todos los autos
+    lista_precios = [float(row[2]) for row in filtered_data]
+
+    kpis["máximo"] = max(lista_precios)
+    kpis["mínimo"] = min(lista_precios)
+    kpis["suma_precio"] = sum(lista_precios)
+    kpis["conteo"] = len(lista_precios)
+    kpis["promedio"] = kpis["suma_precio"] / kpis["conteo"]
+
+    print('Resultados: ' + user_model)
+    pprint.pp(kpis)
