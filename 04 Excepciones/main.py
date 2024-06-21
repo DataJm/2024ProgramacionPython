@@ -10,7 +10,6 @@ o mayor al buscado por el usuario
 '''
 
 import os
-import csv
 
 from modulos.funciones import get_user_rating, filtrar_shows, guardar_shows 
 

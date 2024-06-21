@@ -17,7 +17,7 @@ etiqueta.pack()
 # https://docs.python.org/es/3.10/library/tkinter.ttk.html#label-options
 etiqueta1 = tk.Label(root, text="Etiqueta 1", bg="red")
 etiqueta2 = tk.Label(root, text="Etiqueta 2", bg="green")
-etiqueta3 = tk.Label(root, text="Etiqueta 3", bg="blue")
+etiqueta3 = tk.Label(root, text="Etiqueta 3", bg="#B1AFFF")
 
 # https://docs.python.org/es/3/library/tkinter.html
 etiqueta1.pack(side='top')

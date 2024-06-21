@@ -26,7 +26,7 @@ engine = create_engine(connection_url)
 
 
 # Preparamos nuestro raw SQL
-sql = text("select * from DBO.MX_TW_USUARIOS ")
+sql = text("select * from DBO.MX_TW_USUARIOS")
 
 '''
 En las últimas versiones de SQLAlchemy, se modificó la forma de mandar
@@ -38,4 +38,3 @@ with engine.connect() as conn:
 
     for row in resultados:
         print(row)
-
